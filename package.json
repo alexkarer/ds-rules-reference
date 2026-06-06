@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
+    "test": "run-s test:unit:run verify:talents",
     "test:unit": "vitest",
+    "test:unit:run": "vitest run",
+    "verify:talents": "node scripts/verify-talents.mjs",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "run-s lint:*",
@@ -17,6 +20,7 @@
   },
   "dependencies": {
     "@primeuix/themes": "^2.0.3",
+    "pdfjs-dist": "^6.0.227",
     "pinia": "^3.0.4",
     "primeicons": "^7.0.0",
     "primevue": "^4.5.5",

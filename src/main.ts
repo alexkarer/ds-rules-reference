@@ -18,8 +18,7 @@ app.use(PrimeVue, {
 		options: {
 			prefix: 'ds'
 		}
-	},
-	ripple: true
+	}
 });
 
 app.mount('#app')
