@@ -9,5 +9,5 @@ export type DSTalent = {
 type ClassRequirement = {
     dsClass: DSClass
     classLevel: number
-    maxTalentRank: number
+    maxTalentRank: string
 }

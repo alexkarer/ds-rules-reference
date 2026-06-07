@@ -72,7 +72,6 @@ function groupColumn(items: PositionedItem[], page: number, column: 0 | 1): Text
  */
 export async function extractLines(
   data: ArrayBuffer,
-  onProgress: (fraction: number) => void,
 ): Promise<TextLine[]> {
   const loadingTask = pdfjs.getDocument({ data })
   const doc = await loadingTask.promise
@@ -103,7 +102,6 @@ export async function extractLines(
       lines.push(...groupColumn(right, pageNum, 1))
 
       page.cleanup()
-      onProgress(pageNum / doc.numPages)
     }
   } finally {
     await loadingTask.destroy()

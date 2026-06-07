@@ -14,6 +14,7 @@ const store = useRulesStore();
 
 const isParsing = ref(false);
 const progress = ref(0);
+const statusMessage = ref('extracing text from pdf...');
 const error = ref<string | null>(null);
 
 async function onFileSelect(event: FileUploadSelectEvent) {
@@ -26,15 +27,16 @@ async function onFileSelect(event: FileUploadSelectEvent) {
 
   try {
     const buffer = await file.arrayBuffer();
+    statusMessage.value = 'extracing text from pdf...'
     // pdfjs transfers (detaches) the buffer it is given, so pass a fresh clone to
     // each pass and keep the original `buffer` intact for the next clone.
-    const lines = await extractLines(buffer.slice(0), (fraction) => {
-      progress.value = Math.round(fraction * 100);
-    });
+    const lines = await extractLines(buffer.slice(0));
+    statusMessage.value = 'parsing talents...'
     const talents = parseTalents(lines);
     if (talents.length === 0) {
       throw new Error('No talents could be parsed. Is this the Dungeonslayers rules PDF?');
     }
+    statusMessage.value = 'parsing equipment...'
     const equipmentRegions = await extractEquipmentRegions(buffer.slice(0));
     const equipment = parseEquipment(equipmentRegions);
     store.resetStore();
@@ -55,8 +57,8 @@ async function onFileSelect(event: FileUploadSelectEvent) {
       <div class="content">
         <p style="margin-bottom: 1vh;">No DS Rules Data yet uploaded. Data needs to be parsed from a DS Rules PDF Document before it can be visualized.</p>
         <div v-if="isParsing" class="progress">
-          <p>Parsing PDF…</p>
-          <ProgressBar :value="progress" />
+          <p>{{ statusMessage }}</p>
+          <ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
         </div>
         <template v-else>
           <Message v-if="error" severity="error" style="margin-bottom: 1vh;">{{ error }}</Message>

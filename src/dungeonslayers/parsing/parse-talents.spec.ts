@@ -22,8 +22,8 @@ describe('parseTalents', () => {
     expect(result).toHaveLength(1)
     expect(result[0]!.name).toBe('ABKLINGEN')
     expect(result[0]!.classRequirements).toEqual([
-      { dsClass: 'ZAW', classLevel: 1, maxTalentRank: 5 },
-      { dsClass: 'ERZ', classLevel: 10, maxTalentRank: 10 },
+      { dsClass: 'ZAW', classLevel: 1, maxTalentRank: 'V' },
+      { dsClass: 'ERZ', classLevel: 10, maxTalentRank: 'X' },
     ])
     expect(result[0]!.description).toBe('Dieses Talent reduziert die Abklingzeit von Zaubern.')
   })
@@ -40,9 +40,9 @@ describe('parseTalents', () => {
     )
 
     expect(result[0]!.classRequirements).toEqual([
-      { dsClass: 'Hei', classLevel: 12, maxTalentRank: 3 },
-      { dsClass: 'Sch', classLevel: 8, maxTalentRank: 3 },
-      { dsClass: 'ELE', classLevel: 10, maxTalentRank: 5 },
+      { dsClass: 'Hei', classLevel: 12, maxTalentRank: 'III' },
+      { dsClass: 'Sch', classLevel: 8, maxTalentRank: 'III' },
+      { dsClass: 'ELE', classLevel: 10, maxTalentRank: 'V' },
     ])
   })
 
@@ -75,9 +75,9 @@ describe('parseTalents', () => {
     )
 
     expect(result[0]!.classRequirements).toEqual([
-      { dsClass: 'KRI', classLevel: 4, maxTalentRank: 3 },
-      { dsClass: 'SPÄ', classLevel: 1, maxTalentRank: 3 },
-      { dsClass: 'ZAW', classLevel: 4, maxTalentRank: 3 },
+      { dsClass: 'KRI', classLevel: 4, maxTalentRank: 'III' },
+      { dsClass: 'SPÄ', classLevel: 1, maxTalentRank: 'III' },
+      { dsClass: 'ZAW', classLevel: 4, maxTalentRank: 'III' },
     ])
     expect(result[0]!.description).toBe('Der Charakter ist ein geübter Kletterer.')
   })
@@ -94,12 +94,12 @@ describe('parseTalents', () => {
     )
 
     expect(result[0]!.classRequirements).toEqual([
-      { dsClass: 'KRI', classLevel: 4, maxTalentRank: 3 },
-      { dsClass: 'SPÄ', classLevel: 1, maxTalentRank: 3 },
-      { dsClass: 'ZAW', classLevel: 4, maxTalentRank: 3 },
-      { dsClass: 'ATT', classLevel: 10, maxTalentRank: 5 },
-      { dsClass: 'KMÖ', classLevel: 10, maxTalentRank: 5 },
-      { dsClass: 'MDB', classLevel: 10, maxTalentRank: 5 },
+      { dsClass: 'KRI', classLevel: 4, maxTalentRank: 'III' },
+      { dsClass: 'SPÄ', classLevel: 1, maxTalentRank: 'III' },
+      { dsClass: 'ZAW', classLevel: 4, maxTalentRank: 'III' },
+      { dsClass: 'ATT', classLevel: 10, maxTalentRank: 'V' },
+      { dsClass: 'KMÖ', classLevel: 10, maxTalentRank: 'V' },
+      { dsClass: 'MDB', classLevel: 10, maxTalentRank: 'V' },
     ])
     expect(result[0]!.description).toBe('Der Charakter ist ein geübter Kletterer.')
   })
@@ -183,7 +183,7 @@ describe('parseTalents', () => {
       expect(result).toHaveLength(1)
       expect(result[0]!.name).toBe('ABKLINGEN')
       expect(result[0]!.classRequirements).toEqual([
-        { dsClass: 'ERZ', classLevel: 14, maxTalentRank: 3 },
+        { dsClass: 'ERZ', classLevel: 14, maxTalentRank: 'III' },
       ])
       expect(result[0]!.description).toBe(
         'Der Erzmagier erschafft einen Begleiter. einsilbige Befehle ihres Erschaffers. ' +
@@ -207,8 +207,8 @@ describe('parseTalents', () => {
 
       expect(result.map((t) => t.name)).toEqual(['ABKLINGEN', 'ICH MUSS WEG!'])
       expect(result[1]!.classRequirements).toEqual([
-        { dsClass: 'KMÖ', classLevel: 12, maxTalentRank: 3 },
-        { dsClass: 'MDB', classLevel: 10, maxTalentRank: 3 },
+        { dsClass: 'KMÖ', classLevel: 12, maxTalentRank: 'III' },
+        { dsClass: 'MDB', classLevel: 10, maxTalentRank: 'III' },
       ])
       expect(result[1]!.description).toBe('Der Charakter kann Angriffe komplett ignorieren.')
     })

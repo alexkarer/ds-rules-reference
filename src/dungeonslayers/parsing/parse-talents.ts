@@ -1,7 +1,6 @@
 import { DSClass } from '../model/ds_class'
 import { type DSTalent } from '../model/talent'
 import type { TextLine } from './pdf-text'
-import { romanToInt } from './roman'
 
 const DS_CLASSES = new Set<string>(Object.values(DSClass))
 
@@ -71,7 +70,7 @@ function splitBody(body: string): Pick<DSTalent, 'classRequirements' | 'descript
       classRequirements.push({
         dsClass,
         classLevel: Number(match[2]),
-        maxTalentRank: romanToInt(match[3]!),
+        maxTalentRank: match[3]!,
       })
     }
     rest = rest.slice(match[0].length)

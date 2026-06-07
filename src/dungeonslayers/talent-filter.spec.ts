@@ -3,7 +3,7 @@ import { filterTalents, learnableClasses, type TalentFilter } from './talent-fil
 import { DSClass } from './model/ds_class'
 import type { DSTalent } from './model/talent'
 
-type Req = [DSClass, number, number]
+type Req = [DSClass, number, string]
 
 function talent(name: string, reqs: Req[], description = ''): DSTalent {
   return {
@@ -17,12 +17,12 @@ function talent(name: string, reqs: Req[], description = ''): DSTalent {
   }
 }
 
-const brutalerHieb = talent('Brutaler Hieb', [[DSClass.KRI, 4, 3]], 'Ein harter Schlag.')
-const alchemie = talent('Alchemie', [[DSClass.ZAW, 1, 5], [DSClass.ERZ, 10, 10]], 'Tränke brauen.')
-const heilung = talent('Heilung', [[DSClass.Hei, 1, 5]], 'Heilt Wunden.')
+const brutalerHieb = talent('Brutaler Hieb', [[DSClass.KRI, 4, 'III']], 'Ein harter Schlag.')
+const alchemie = talent('Alchemie', [[DSClass.ZAW, 1, 'V'], [DSClass.ERZ, 10, 'X']], 'Tränke brauen.')
+const heilung = talent('Heilung', [[DSClass.Hei, 1, 'V']], 'Heilt Wunden.')
 const ausweichen = talent(
   'Ausweichen',
-  [[DSClass.KRI, 1, 3], [DSClass.SPÄ, 1, 3], [DSClass.ZAW, 1, 3]],
+  [[DSClass.KRI, 1, 'III'], [DSClass.SPÄ, 1, 'III'], [DSClass.ZAW, 1, 'III']],
   'Weicht Angriffen aus.',
 )
 const all = [brutalerHieb, alchemie, heilung, ausweichen]

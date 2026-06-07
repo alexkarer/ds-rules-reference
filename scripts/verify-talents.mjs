@@ -82,7 +82,7 @@ const check = (label, condition) => {
 const names = talents.map((t) => t.name)
 check(`parsed a healthy number of talents (got ${talents.length})`, talents.length >= 120)
 check('no duplicate talent names', new Set(names).size === names.length)
-check('no NaN talent ranks', talents.every((t) => t.classRequirements.every((r) => !Number.isNaN(r.maxTalentRank))))
+check('all talent ranks are roman-numeral strings', talents.every((t) => t.classRequirements.every((r) => /^[IVXLCDM]+$/.test(r.maxTalentRank))))
 check('all talents have a non-empty description', talents.every((t) => t.description.length > 0))
 
 const abk = byName('ABKLINGENDES BLUT')
