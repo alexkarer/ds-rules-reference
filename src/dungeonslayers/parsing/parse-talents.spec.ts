@@ -212,5 +212,28 @@ describe('parseTalents', () => {
       ])
       expect(result[1]!.description).toBe('Der Charakter kann Angriffe komplett ignorieren.')
     })
+
+    it('recognises headings that end with a question mark ("KANN ICH MAL VORBEI?")', () => {
+      const result = parseTalents(
+        lines(
+          'ABKLINGEN',
+          'KMÖ 12 (III)',
+          'Er erhält pro Talentrang auf Schlagen einen Bonus von +1.',
+          'KANN ICH MAL VORBEI?',
+          'MDB 10 (III)',
+          'Der Meisterdieb kann eine Zielperson durchqueren.',
+          'REGELN',
+        ),
+      )
+
+      expect(result.map((t) => t.name)).toEqual(['ABKLINGEN', 'KANN ICH MAL VORBEI?'])
+      expect(result[0]!.description).toBe(
+        'Er erhält pro Talentrang auf Schlagen einen Bonus von +1.',
+      )
+      expect(result[1]!.classRequirements).toEqual([
+        { dsClass: 'MDB', classLevel: 10, maxTalentRank: 'III' },
+      ])
+      expect(result[1]!.description).toBe('Der Meisterdieb kann eine Zielperson durchqueren.')
+    })
   })
 })

@@ -21,8 +21,8 @@ const SUMMARY_START = /^TALENTE DER /
 
 /** A single requirement token at the start of the remaining text, e.g. "KRI 1 (III), ". */
 const REQ_TOKEN = /^([A-Za-zÄÖÜäöü]{2,5})\s+(\d+)\s*\(([IVXLCDM]+)\)\s*,?\s*/
-/** An all-caps heading: letters/spaces/hyphens/apostrophes/"!", no digits. */
-const HEADING = /^[A-ZÄÖÜ][A-ZÄÖÜ '!-]{2,39}$/
+/** An all-caps heading: letters/spaces/hyphens/apostrophes/"!"/"?", no digits. */
+const HEADING = /^[A-ZÄÖÜ][A-ZÄÖÜ '!?-]{2,39}$/
 
 /** First line of a creature stat block, e.g. "KÖR: 4 AGI: 4 GEI: 4". */
 const STAT_ROW = /^(KÖR|AGI|GEI|ST|BE|VE|HÄ|GE|AU)\s*:/

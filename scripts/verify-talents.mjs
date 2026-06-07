@@ -107,5 +107,11 @@ check('ICH MUSS WEG! exists', !!ich)
 check('ICH MUSS WEG! has KMÖ + MDB requirements', !!ich && ich.classRequirements.map((r) => r.dsClass).join(',') === 'KMÖ,MDB')
 check('ICH MUSS WEG! description parsed', !!ich && ich.description.includes('komplett ignorieren'))
 
+const kann = byName('KANN ICH MAL VORBEI?')
+check('KANN ICH MAL VORBEI? exists as its own talent', !!kann)
+check('KANN ICH MAL VORBEI? has the MDB requirement', !!kann && kann.classRequirements.some((r) => r.dsClass === 'MDB'))
+const kaempfer = byName('KÄMPFER')
+check('KÄMPFER description does not leak the next heading', !kaempfer || !/KANN ICH MAL VORBEI/.test(kaempfer.description))
+
 console.log(`\n${talents.length} talents parsed. ${failures.length === 0 ? 'ALL CHECKS PASSED' : `${failures.length} CHECK(S) FAILED`}`)
 process.exit(failures.length === 0 ? 0 : 1)
